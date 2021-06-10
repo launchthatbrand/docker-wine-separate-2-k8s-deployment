@@ -27,9 +27,9 @@ spec:
         imagePullPolicy: Always
         command: [ "/bin/bash", "-c", "--" ]
         args: [ "while true; do sleep 30; done;" ]
-        #volumeMounts:
-        #- name: wine-separate-2-volume
-        #  mountPath: /home/winer/.wine
+        volumeMounts:
+        - name: wine-separate-2-volume
+          mountPath: /home/winer/.wine
       volumes:
       - name: wine-separate-2-volume
         persistentVolumeClaim:
