@@ -23,27 +23,13 @@ spec:
         securityContext:
           runAsUser: 0
       - name: nevmerzhitsky-headless-metatrader4
-        image: launchthatbrand/nevmerzhitsky-headless-metatrader4:minimal-1.0.5
+        image: launchthatbrand/nevmerzhitsky-headless-metatrader4:minimal
         imagePullPolicy: Always
         command: [ "/bin/bash", "-c", "--" ]
         args: [ "while true; do sleep 30; done;" ]
-        volumeMounts:
-        - name: wine-separate-2-volume
-          mountPath: /home/winer/.wine/
-      initContainers:
-        - name: take-data-dir-ownership
-          image: alpine:3
-          command:
-          #- cp
-          #- /home/winer/.cache/mt4_kot4x/.
-          #- /home/winer/.wine/drive_c/mt4
-          - chown
-          - -R
-          - 1000:1010
-          - /home/winer/.wine/
-          volumeMounts:
-            - name: wine-separate-2-volume
-              mountPath: /home/winer/.wine/
+        #volumeMounts:
+        #- name: wine-separate-2-volume
+        #  mountPath: /home/winer/.wine
       volumes:
       - name: wine-separate-2-volume
         persistentVolumeClaim:
