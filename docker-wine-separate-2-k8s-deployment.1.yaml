@@ -1,0 +1,30 @@
+apiVersion: v1 
+kind: Service
+metadata:
+  name: wine-separate-2-service
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    name: wine-separate-2-novnc
+  - port: 5900
+    protocol: TCP
+    name: wine-separate-2-vnc
+    nodePort : 30387
+  selector:
+    app: wine-separate-2
+  type: NodePort
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wine-separate-2-pvc
+  labels:
+    app: wine-separate-2
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+        
