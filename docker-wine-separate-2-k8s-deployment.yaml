@@ -27,9 +27,24 @@ spec:
         imagePullPolicy: Always
         command: [ "/bin/bash", "-c", "--" ]
         args: [ "while true; do sleep 30; done;" ]
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/sh", "-c", "chown winer:winer -R /home/winer/.wine; cp -R /home/winer/.cache/mt4_kot4x/* /home/winer/.wine/drive_c/mt4"]
         volumeMounts:
         - name: wine-separate-2-volume
-          mountPath: /home/winer/.wine
+          mountPath: /home/winer/.wine/drive_c/mt4
+      #initContainers:
+      #- name: init-myservice
+      #  image: busybox
+      #  command: ['sh', '-c', 'echo The app is running! && sleep 36000']
+          #- chown
+          #- -R
+          #- 1000:1010
+          #- /home/winer/.wine/
+        #volumeMounts:
+        #- name: wine-separate-2-volume
+        #  mountPath: /home
       volumes:
       - name: wine-separate-2-volume
         persistentVolumeClaim:
