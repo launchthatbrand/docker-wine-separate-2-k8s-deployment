@@ -19,32 +19,30 @@ spec:
       containers:
       - name: solarkennedy-wine-x11-novnc-docker
         image: launchthatbrand/solarkennedy-wine-x11-novnc-docker:latest
-        imagePullPolicy: Always
         securityContext:
           runAsUser: 0
       - name: nevmerzhitsky-headless-metatrader4
-        image: launchthatbrand/nevmerzhitsky-headless-metatrader4:minimal
-        imagePullPolicy: Always
-        command: [ "/bin/bash", "-c", "--" ]
-        args: [ "while true; do sleep 30; done;" ]
+        image: launchthatbrand/nevmerzhitsky-headless-metatrader4:elease-1.0.5
+        #command: [ "/bin/bash", "-c", "--" ]
+        #args: [ "while true; do sleep 30; done;" ]
+        # need poststart to copy files from DockerFile path into pvc path. cant run chmod here as this it needs root.
         lifecycle:
           postStart:
             exec:
-              command: ["/bin/sh", "-c", "chown winer:winer -R /home/winer/.wine; cp -R /home/winer/.cache/mt4_kot4x/* /home/winer/.wine/drive_c/mt4"]
+              command: ["/bin/bash", "-c", "cp -R /home/winer/.cache/mt4_kot4x/* /home/winer/.wine/drive_c/mt4/"]
         volumeMounts:
         - name: wine-separate-2-volume
           mountPath: /home/winer/.wine/drive_c/mt4
-      #initContainers:
-      #- name: init-myservice
-      #  image: busybox
-      #  command: ['sh', '-c', 'echo The app is running! && sleep 36000']
-          #- chown
-          #- -R
-          #- 1000:1010
-          #- /home/winer/.wine/
-        #volumeMounts:
-        #- name: wine-separate-2-volume
-        #  mountPath: /home
+      initContainers:
+      # need init container to run chown command as root. Cant use postStart as then everything would need to run as root.
+      - name: init-myservice
+        image: busybox
+        command: ['sh', '-c', 'chown -R 1000:1010 /home/winer/.wine; echo The app is running!']
+        volumeMounts:
+        - name: wine-separate-2-volume
+          mountPath: /home/winer/.wine/drive_c/mt4
+      imagePullSecrets:
+      - name: regcred
       volumes:
       - name: wine-separate-2-volume
         persistentVolumeClaim:
