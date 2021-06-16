@@ -35,11 +35,11 @@ spec:
                 - >
                   if [ ! -f /home/winer/.wine/drive_c/mt4/terminal.exe ]; then
                   mkdir -p /home/winer/.wine/drive_c/mt4;
-                  cp -R /home/winer/.cache/mt4_kot4x/* /home/winer/.wine/drive_c/mt4/;
+                  cp -R /home/winer/.cache/mt4_kot4x/* /home/winer/.wine/drive_c/mt4/ && cp -R /home/winer/.cache/fonts/* /home/winer/.wine/drive_c/windows/Fonts;
                   fi
         volumeMounts:
         - name: wine-separate-3-volume
-          mountPath: /home/winer/.wine/drive_c/mt4
+          mountPath: /home/winer/.wine/
       initContainers:
       # need init container to run chown command as root. Cant use postStart as then everything would need to run as root.
       - name: init-myservice
@@ -48,7 +48,7 @@ spec:
         #command: ['sh', '-c', 'while true; do sleep 30; done;']
         volumeMounts:
         - name: wine-separate-3-volume
-          mountPath: /home/winer/.wine/drive_c/mt4
+          mountPath: /home/winer/.wine/
       imagePullSecrets:
       - name: regcred
       volumes:
