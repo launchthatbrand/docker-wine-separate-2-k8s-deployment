@@ -1,26 +1,31 @@
 apiVersion: v1 
 kind: Service
 metadata:
-  name: wine-separate-3-service
+  name: "$Username-$random-docker-wine"
+  labels:
+    app: "$Username-$random-docker-wine"
+    client: "$Username-$random"
 spec:
   ports:
   - port: 8080
     protocol: TCP
-    name: wine-separate-3-novnc
+    name: "$Username-$random-novnc"
   - port: 5900
     protocol: TCP
-    name: wine-separate-3-vnc
+    name: "$Username-$random-vnc"
     nodePort : 30388
   selector:
-    app: wine-separate-3
+    app: "$Username-$random-docker-wine"
+    client: "$Username-$random"
   type: NodePort
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: wine-separate-3-pvc
+  name: "$Username-$random-docker-wine"
   labels:
-    app: wine-separate-3
+    app: "$Username-$random-docker-wine"
+    client: "$Username-$random"
 spec:
   accessModes:
     - ReadWriteOnce
