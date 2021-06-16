@@ -13,7 +13,7 @@ spec:
   - port: 5900
     protocol: TCP
     name: "$Username-$random-vnc"
-    nodePort : 30380
+    # nodePort : 30380
   selector:
     app: "$Username-$random-docker-wine"
     client: "$Username-$random"
