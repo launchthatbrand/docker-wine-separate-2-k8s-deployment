@@ -72,6 +72,8 @@ spec:
         volumeMounts:
         - name: $Username-docker-wine
           mountPath: /home/winer/.wine/
+      nodeSelector:
+        node.kubernetes.io/instance-type: m5.large
       imagePullSecrets:
       - name: regcred
       volumes:
