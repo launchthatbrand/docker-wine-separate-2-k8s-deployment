@@ -48,8 +48,8 @@ spec:
                   fi;
         resources:
           requests:
-            memory: "64Mi"
-            cpu: "100m"
+            memory: "100Mi"
+            cpu: "200m"
           limits:
             memory: "${MEM}Gi"
             cpu: "${CPU}m"
@@ -73,7 +73,7 @@ spec:
         - name: $Username-docker-wine
           mountPath: /home/winer/.wine/
       nodeSelector:
-        node.kubernetes.io/instance-type: m5.large
+        node.kubernetes.io/instance-type: $instancetype
       imagePullSecrets:
       - name: regcred
       volumes:
