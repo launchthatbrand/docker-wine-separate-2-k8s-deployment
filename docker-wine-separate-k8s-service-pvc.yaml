@@ -22,7 +22,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: "$Username-$random-docker-wine"
+  name: "$Username-docker-wine"
   labels:
     app: "$Username-$random-docker-wine"
     client: "$Username-$random"
