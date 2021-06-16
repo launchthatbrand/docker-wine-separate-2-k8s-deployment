@@ -61,7 +61,7 @@ spec:
         - name: USER_PASSWD
           value: $Password
         volumeMounts:
-        - name: $Username-$random-docker-wine
+        - name: $Username-docker-wine
           mountPath: /home/winer/.wine/
       initContainers:
       # need init container to run chown command as root. Cant use postStart as then everything would need to run as root.
