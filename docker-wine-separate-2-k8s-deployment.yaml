@@ -1,27 +1,32 @@
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
-  name: wine-separate-3-deployment
+  name: "$Username-$random-docker-wine"
   labels:
-    app: wine-separate-3
+    app: "$Username-$random-docker-wine"
+    client: "$Username-$random"
 spec:
   replicas: 1
   selector:
     matchLabels:
-        app: wine-separate-3
+        app: "$Username-$random-docker-wine"
+        client: "$Username-$random"
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
-        app: wine-separate-3
+        app: "$Username-$random-docker-wine"
+        client: "$Username-$random"
     spec:
       securityContext:
         fsGroup: 1010
       containers:
-      - name: solarkennedy-wine-x11-novnc-docker
-        image: launchthatbrand/solarkennedy-wine-x11-novnc-docker:release-1.0.6
+      - name: "$Username-$random-solarkennedy"
+        image: launchthatbrand/solarkennedy-wine-x11-novnc-docker:release-1.0.7
         securityContext:
           runAsUser: 0
-      - name: nevmerzhitsky-headless-metatrader4
+      - name: "$Username-$random-nevmerzhitsky"
         image: launchthatbrand/nevmerzhitsky-headless-metatrader4:elease-1.0.10
         #command: [ "/bin/bash", "-c", "--" ]
         #args: [ "while true; do sleep 30; done;" ]
@@ -41,8 +46,22 @@ spec:
                   mkdir -p /home/winer/.wine/drive_c/windows/Fonts;
                   cp -R /home/winer/.cache/fonts/* /home/winer/.wine/drive_c/windows/Fonts;
                   fi;
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "${MEM}Gi"
+            cpu: "${CPU}m"
+        env:
+        - name: RDP_SERVER
+          value: "yes"
+        - name: USER_NAME
+          value: $Username
+        - name: USER_PASSWD
+          value: $Password
         volumeMounts:
-        - name: wine-separate-3-volume
+        - name: $Username-$random-docker-wine
           mountPath: /home/winer/.wine/
       initContainers:
       # need init container to run chown command as root. Cant use postStart as then everything would need to run as root.
@@ -51,12 +70,12 @@ spec:
         command: ['sh', '-c', 'chown -R 1000:1010 /home/winer/; echo The app is running!']
         #command: ['sh', '-c', 'while true; do sleep 30; done;']
         volumeMounts:
-        - name: wine-separate-3-volume
+        - name: $Username-docker-wine
           mountPath: /home/winer/.wine/
       imagePullSecrets:
       - name: regcred
       volumes:
-      - name: wine-separate-3-volume
+      - name: $Username-docker-wine
         persistentVolumeClaim:
-          claimName: wine-separate-3-pvc
+          claimName: $Username-docker-wine
         
