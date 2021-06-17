@@ -61,7 +61,7 @@ spec:
         - name: USER_PASSWD
           value: $Password
         - name: SCREEN_WHD
-          value: 1366x768x24
+          value: 1600x900x24
         volumeMounts:
         - name: $Username-docker-wine
           mountPath: /home/winer/.wine/
