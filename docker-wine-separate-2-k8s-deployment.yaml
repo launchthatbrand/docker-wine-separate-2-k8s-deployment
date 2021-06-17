@@ -23,7 +23,7 @@ spec:
         fsGroup: 1010
       containers:
       - name: "$Username-$random-solarkennedy"
-        image: launchthatbrand/solarkennedy-wine-x11-novnc-docker:release-1.0.8
+        image: launchthatbrand/solarkennedy-wine-x11-novnc-docker:release-1.0.9
         securityContext:
           runAsUser: 0
       - name: "$Username-$random-nevmerzhitsky"
@@ -60,6 +60,8 @@ spec:
           value: $Username
         - name: USER_PASSWD
           value: $Password
+        - name: SCREEN_WHD
+          value: ${SCREEN_WHD:-1366x768x24}
         volumeMounts:
         - name: $Username-docker-wine
           mountPath: /home/winer/.wine/
