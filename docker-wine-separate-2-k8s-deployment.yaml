@@ -70,7 +70,6 @@ spec:
         image: k8s.gcr.io/git-sync:v3.0.1
         securityContext:
           runAsUser: 1000
-          fsGroup: 1010
         env:
         - name: GIT_SYNC_REPO
           value: https://github.com/launchthatbrand/mt4_filesystem.git
