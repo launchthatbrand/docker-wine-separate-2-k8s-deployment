@@ -73,16 +73,16 @@ spec:
           value: https://github.com/launchthatbrand/mt4_filesystem.git
         - name: GIT_SYNC_BRANCH
           value: master
-        - name: GIT_SYNC_ROOT
-          value: drive_c/mt4
-        - name: GIT_SYNC_ADD_USER
-          value: 1000:1010
-        - name: GIT_SYNC_PERMISSIONS
-          value: 1000:1010
-        - name: GIT_SYNC_USERNAME
-          value: launchthatbrand
-        - name: GIT_SYNC_PASSWORD
-          value: 8S9me^fQ6c
+        #- name: GIT_SYNC_ROOT
+        #  value: drive_c/mt4
+        #- name: GIT_SYNC_ADD_USER
+        #  value: 1000:1010
+        #- name: GIT_SYNC_PERMISSIONS
+        #  value: 1000:1010
+        #- name: GIT_SYNC_USERNAME
+        #  value: launchthatbrand
+        #- name: GIT_SYNC_PASSWORD
+        #  value: 8S9me^fQ6c
         volumeMounts:
         - name: $Username-docker-wine
           mountPath: /home/winer/.wine/
