@@ -88,15 +88,15 @@ spec:
         volumeMounts:
         - name: $Username-docker-wine
           mountPath: /home/winer/.wine/
-      # initContainers:
+      initContainers:
       # need init container to run chown command as root. Cant use postStart as then everything would need to run as root.
-      # - name: init-gitsync
-      #   image: k8s.gcr.io/git-sync:v3.0.1
-        # command: ['sh', '-c', 'chown -R 1000:1010 /home/winer/; echo The app is running!']
+      - name: init-gitsync
+        image: k8s.gcr.io/git-sync:v3.0.1
+        command: ['sh', '-c', 'chown -R 1000:1010 /home/winer/; echo The app is running!']
         # command: ['sh', '-c', 'while true; do sleep 30; done;']
-        # volumeMounts:
-        # - name: $Username-docker-wine
-        #  mountPath: /home/winer/.wine/
+        volumeMounts:
+        - name: $Username-docker-wine
+          mountPath: /home/winer/.wine/
       nodeSelector:
         node.kubernetes.io/instance-type: $instancetype
       imagePullSecrets:
