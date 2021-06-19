@@ -74,7 +74,7 @@ spec:
         - name: GIT_SYNC_REPO
           value: https://github.com/launchthatbrand/mt4_filesystem.git
         - name: GIT_SYNC_BRANCH
-          value: "$brand-$mt4"
+          value: "$brand-$mt4-test"
         - name: GIT_SYNC_ROOT
           value: /home/winer/.wine/drive_c/
         - name: GIT_SYNC_DEST
