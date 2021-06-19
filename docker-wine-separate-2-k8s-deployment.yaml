@@ -83,6 +83,8 @@ spec:
           value: 1000:1010
         - name: GIT_SYNC_PERMISSIONS
           value: 1000:1010
+        - name: GIT_SYNC_WAIT
+          value: 3600
         #- name: GIT_SYNC_USERNAME
         #  value: launchthatbrand
         #- name: GIT_SYNC_PASSWORD
