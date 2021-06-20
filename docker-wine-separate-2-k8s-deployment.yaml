@@ -68,6 +68,13 @@ spec:
           mountPath: /home/winer/.wine/
       - name: "$Username-gitsync"
         image: k8s.gcr.io/git-sync:v3.0.1
+        resources:
+          requests:
+            memory: "50Mi"
+            cpu: "50m"
+          limits:
+            memory: "50Mi"
+            cpu: "50m"
         securityContext:
           runAsUser: 1000
         env:
