@@ -66,39 +66,39 @@ spec:
         volumeMounts:
         - name: $Username-docker-wine
           mountPath: /home/winer/.wine/
-      - name: "$Username-gitsync"
-        image: k8s.gcr.io/git-sync:v3.0.1
-        resources:
-          requests:
-            memory: "50Mi"
-            cpu: "50m"
-          limits:
-            memory: "100Mi"
-            cpu: "100m"
-        securityContext:
-          runAsUser: 1000
-        env:
-        - name: GIT_SYNC_REPO
-          value: https://github.com/launchthatbrand/mt4_filesystem.git
-        - name: GIT_SYNC_BRANCH
-          value: "$brand-$mt4"
-        - name: GIT_SYNC_ROOT
-          value: /home/winer/.wine/drive_c/
-        - name: GIT_SYNC_DEST
-          value: mt4
-        - name: GIT_SYNC_ADD_USER
-          value: 1000:1010
-        - name: GIT_SYNC_PERMISSIONS
-          value: 1000:1010
-        - name: GIT_SYNC_WAIT
-          value: "3600"
-        #- name: GIT_SYNC_USERNAME
-        #  value: launchthatbrand
-        #- name: GIT_SYNC_PASSWORD
-        #  value: 8S9me^fQ6c
-        volumeMounts:
-        - name: $Username-docker-wine
-          mountPath: /home/winer/.wine/
+      #- name: "$Username-gitsync"
+      #  image: k8s.gcr.io/git-sync:v3.0.1
+      #  resources:
+      #    requests:
+      #      memory: "50Mi"
+      #      cpu: "50m"
+      #    limits:
+      #      memory: "100Mi"
+      #      cpu: "100m"
+      #  securityContext:
+      #    runAsUser: 1000
+      #  env:
+      #  - name: GIT_SYNC_REPO
+      #    value: https://github.com/launchthatbrand/mt4_filesystem.git
+      #  - name: GIT_SYNC_BRANCH
+      #    value: "$brand-$mt4"
+      #  - name: GIT_SYNC_ROOT
+      #    value: /home/winer/.wine/drive_c/
+      #  - name: GIT_SYNC_DEST
+      #    value: mt4
+      #  - name: GIT_SYNC_ADD_USER
+      #    value: 1000:1010
+      #  - name: GIT_SYNC_PERMISSIONS
+      #    value: 1000:1010
+      #  - name: GIT_SYNC_WAIT
+      #    value: "3600"
+      #  #- name: GIT_SYNC_USERNAME
+      #  #  value: launchthatbrand
+      #  #- name: GIT_SYNC_PASSWORD
+      #  #  value: 8S9me^fQ6c
+      #  volumeMounts:
+      #  - name: $Username-docker-wine
+      #    mountPath: /home/winer/.wine/
       initContainers:
       # need init container to run chown command as root. Cant use postStart as then everything would need to run as root.
       - name: init-busybox
