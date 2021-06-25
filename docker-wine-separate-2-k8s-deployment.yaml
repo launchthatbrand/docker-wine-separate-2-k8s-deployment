@@ -28,8 +28,8 @@ spec:
           runAsUser: 0
       - name: "$Username-$random-nevmerzhitsky"
         image: launchthatbrand/nevmerzhitsky-headless-metatrader4:elease-1.0.16
-        command: [ "/bin/bash", "-c", "--" ]
-        args: [ "while true; do sleep 30; done;" ]
+        #command: [ "/bin/bash", "-c", "--" ]
+        #args: [ "while true; do sleep 30; done;" ]
         # need poststart to copy files from DockerFile path into pvc path. cant run chmod here as it needs root.
         #lifecycle:
         #  postStart:
