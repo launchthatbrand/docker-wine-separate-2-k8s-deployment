@@ -1,0 +1,71 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: "default-123456-separate"
+  labels:
+    app: "default-123456-separate"
+    client: "default-123456"
+spec:
+  selector:
+    matchLabels:
+      app: "default-123456-separate"
+      client: "default-123456"
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: "default-123456-separate"
+        client: "default-123456"
+    spec:
+      containers:
+      - name: wine
+        image: suchja/wine
+        env:
+        - name: DISPLAY
+          value: "localhost:0.0"
+      - name: suchja-x11server
+        image: suchja/x11server
+        env:
+        - name: DISPLAY
+          value: "0"
+        - name: SCREEN
+          value: "0"
+        ports:
+        - name: x11server
+          containerPort: 6000
+      volumes:
+      - name: default-123456-separate
+        persistentVolumeClaim:
+          claimName: default-123456-separate
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "default-123456-separate"
+  labels:
+    app: "default-123456-separate"
+    client: "default-123456"
+spec:
+  ports:
+  - port: 5900
+    protocol: TCP
+    targetPort: 5900
+  selector:
+    app: "default-123456-separate"
+    client: "default-123456"
+  type: NodePort
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: "default-123456-separate"
+  labels:
+    app: "default-123456-separate"
+    client: "default-123456"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

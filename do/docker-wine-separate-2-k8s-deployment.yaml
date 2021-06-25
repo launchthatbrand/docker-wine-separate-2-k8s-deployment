@@ -1,33 +1,33 @@
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
-  name: "$Username-$random-docker-wine"
+  name: "default-docker-wine"
   labels:
-    app: "$Username-$random-docker-wine"
-    client: "$Username-$random"
+    app: "default-docker-wine"
+    client: "default"
 spec:
   replicas: 1
   selector:
     matchLabels:
-        app: "$Username-$random-docker-wine"
-        client: "$Username-$random"
+        app: "default-docker-wine"
+        client: "default"
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: "$Username-$random-docker-wine"
-        client: "$Username-$random"
+        app: "default-docker-wine"
+        client: "default"
     spec:
       securityContext:
         fsGroup: 1010
       containers:
-      - name: "$Username-$random-solarkennedy"
+      - name: "default-solarkennedy"
         image: launchthatbrand/solarkennedy-wine-x11-novnc-docker:release-1.0.13
         securityContext:
           runAsUser: 0
-      - name: "$Username-$random-nevmerzhitsky"
-        image: launchthatbrand/nevmerzhitsky-headless-metatrader4:elease-1.0.12
+      - name: "default-nevmerzhitsky"
+        image: launchthatbrand/nevmerzhitsky-headless-metatrader4:elease-1.0.11
         # command: [ "/bin/bash", "-c", "--" ]
         # args: [ "while true; do sleep 30; done;" ]
         # need poststart to copy files from DockerFile path into pvc path. cant run chmod here as it needs root.
@@ -52,21 +52,21 @@ spec:
             memory: "100Mi"
             cpu: "200m"
           limits:
-            memory: "${MEM}Gi"
-            cpu: "${CPU}m"
+            memory: "250Mi"
+            cpu: "300m"
         env:
         - name: RDP_SERVER
           value: "yes"
         - name: USER_NAME
-          value: $Username
+          value: default
         - name: USER_PASSWD
-          value: $Password
+          value: default
         - name: SCREEN_WHD
           value: 1600x900x24
         volumeMounts:
-        - name: $Username-docker-wine
+        - name: default-docker-wine
           mountPath: /home/winer/.wine/
-      - name: "$Username-gitsync"
+      - name: "default-gitsync"
         image: k8s.gcr.io/git-sync:v3.0.1
         resources:
           requests:
@@ -81,7 +81,7 @@ spec:
         - name: GIT_SYNC_REPO
           value: https://github.com/launchthatbrand/mt4_filesystem.git
         - name: GIT_SYNC_BRANCH
-          value: "$brand-$mt4"
+          value: "lvrg-type_m"
         - name: GIT_SYNC_ROOT
           value: /home/winer/.wine/drive_c/
         - name: GIT_SYNC_DEST
@@ -97,7 +97,7 @@ spec:
         #- name: GIT_SYNC_PASSWORD
         #  value: 8S9me^fQ6c
         volumeMounts:
-        - name: $Username-docker-wine
+        - name: default-docker-wine
           mountPath: /home/winer/.wine/
       initContainers:
       # need init container to run chown command as root. Cant use postStart as then everything would need to run as root.
@@ -106,14 +106,14 @@ spec:
         command: ['sh', '-c', 'mkdir -p /home/winer/.wine/drive_c; chown -R 1000:1010 /home/winer/; echo The app is running!']
         # command: ['sh', '-c', 'while true; do sleep 30; done;']
         volumeMounts:
-        - name: $Username-docker-wine
+        - name: default-docker-wine
           mountPath: /home/winer/.wine/
-      nodeSelector:
-        node.kubernetes.io/instance-type: $instancetype
+      #nodeSelector:
+      #  node.kubernetes.io/instance-type: $instancetype
       imagePullSecrets:
       - name: regcred
       volumes:
-      - name: $Username-docker-wine
+      - name: default-docker-wine
         persistentVolumeClaim:
-          claimName: $Username-docker-wine
+          claimName: default-docker-wine
         

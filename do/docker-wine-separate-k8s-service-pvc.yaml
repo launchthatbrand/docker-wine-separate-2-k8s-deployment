@@ -1,0 +1,35 @@
+apiVersion: v1 
+kind: Service
+metadata:
+  name: "default1-docker-wine"
+  labels:
+    app: "default1-docker-wine"
+    client: "default1"
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    name: "default1-novnc"
+  - port: 5900
+    protocol: TCP
+    name: "default1-vnc"
+    # nodePort : 30380
+  selector:
+    app: "default1-docker-wine"
+    client: "default1"
+  type: NodePort
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: "default1-docker-wine"
+  labels:
+    app: "default1-docker-wine"
+    client: "default1"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+        
