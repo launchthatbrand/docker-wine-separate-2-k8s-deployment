@@ -76,7 +76,7 @@ spec:
         - name: PRODUCT_EXT
           value: $product_ext
         volumeMounts:
-        - name: $Username-docker-wine
+        - name: "$Username-$brand-$product-$random"
           mountPath: /home/winer/.wine/
       #- name: "$Username-gitsync"
       #  image: k8s.gcr.io/git-sync:v3.0.1
