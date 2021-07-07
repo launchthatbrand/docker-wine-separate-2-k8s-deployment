@@ -1,23 +1,29 @@
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
-  name: "$Username-$random-docker-wine"
+  name: "$Username-$brand-$product-$random"
   labels:
-    app: "$Username-$random-docker-wine"
-    client: "$Username-$random"
+    user: "$Username"
+    client: "$brand"
+    app: "$product"
+    id: "$random"
 spec:
   replicas: 1
   selector:
     matchLabels:
-        app: "$Username-$random-docker-wine"
-        client: "$Username-$random"
+        user: "$Username"
+        client: "$brand"
+        app: "$product"
+        id: "$random"
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: "$Username-$random-docker-wine"
-        client: "$Username-$random"
+        user: "$Username"
+        client: "$brand"
+        app: "$product"
+        id: "$random"
     spec:
       securityContext:
         fsGroup: 1010
