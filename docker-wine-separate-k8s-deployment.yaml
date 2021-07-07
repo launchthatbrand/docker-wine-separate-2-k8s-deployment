@@ -73,6 +73,8 @@ spec:
           value: $brand
         - name: PRODUCT
           value: $product
+        - name: PRODUCT_EXT
+          value: $product_ext
         volumeMounts:
         - name: $Username-docker-wine
           mountPath: /home/winer/.wine/
