@@ -33,7 +33,7 @@ spec:
         securityContext:
           runAsUser: 0
       - name: "$Username-$random-nevmerzhitsky"
-        image: launchthatbrand/nevmerzhitsky-headless-metatrader4:elease-1.0.37
+        image: launchthatbrand/nevmerzhitsky-headless-metatrader4:elease-1.0.38
         #command: [ "/bin/bash", "-c", "--" ]
         #args: [ "while true; do sleep 30; done;" ]
         # need poststart to copy files from DockerFile path into pvc path. cant run chmod here as it needs root.
@@ -109,7 +109,7 @@ spec:
       #  #- name: GIT_SYNC_PASSWORD
       #  #  value: 8S9me^fQ6c
       #  volumeMounts:
-      #  - name: $Username-docker-wine
+      #  - name: "$Username-$brand-$product-$random"
       #    mountPath: /home/winer/.wine/
       initContainers:
       # need init container to run chown command as root. Cant use postStart as then everything would need to run as root.
@@ -118,16 +118,16 @@ spec:
         command: ['sh', '-c', 'mkdir -p /home/winer/.wine/drive_c; chown -R 1000:1010 /home/winer/; echo The app is running!']
         # command: ['sh', '-c', 'while true; do sleep 30; done;']
         volumeMounts:
-        - name: $Username-docker-wine
+        - name: "$Username-$brand-$product-$random"
           mountPath: /home/winer/.wine/
       nodeSelector:
         node.kubernetes.io/instance-type: $instancetype
       imagePullSecrets:
       - name: regcred
       volumes:
-      - name: $Username-docker-wine
+      - name: "$Username-$brand-$product-$random"
         persistentVolumeClaim:
-          claimName: $Username-docker-wine
+          claimName: "$Username-$brand-$product-$random"
       tolerations:
       - key: "client"
         operator: "Equal"

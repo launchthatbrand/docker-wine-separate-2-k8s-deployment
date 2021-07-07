@@ -9,9 +9,9 @@ metadata:
     id: "$random"
 spec:
   ports:
-  - port: 8080
-    protocol: TCP
-    name: "$Username-$random-novnc"
+  #- port: 8080
+  #  protocol: TCP
+  #  name: "$Username-$random-novnc"
   - port: 5900
     protocol: TCP
     name: "$Username-$random-vnc"
