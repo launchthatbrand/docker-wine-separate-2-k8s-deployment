@@ -1,12 +1,12 @@
 apiVersion: v1 
 kind: Service
 metadata:
-  name: "$Username-$brand-$product-$random"
+  name: "$Username-$brand-$product-$random-$i"
   labels:
     user: "$Username"
     client: "$brand"
     app: "$product"
-    id: "$random"
+    id: "$random-$i"
 spec:
   ports:
   #- port: 8080
@@ -20,18 +20,18 @@ spec:
     user: "$Username"
     client: "$brand"
     app: "$product"
-    id: "$random"
+    id: "$random-$i"
   type: NodePort
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: "$Username-$brand-$product-$random"
+  name: "$Username-$brand-$product-$random-$i"
   labels:
     user: "$Username"
     client: "$brand"
     app: "$product"
-    id: "$random"
+    id: "$random-$i"
 spec:
   accessModes:
     - ReadWriteOnce
