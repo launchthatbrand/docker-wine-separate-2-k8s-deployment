@@ -1,12 +1,12 @@
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
-  name: "$Username-$brand-$product-$random"
+  name: "$Username-$brand-$product-$random-$i"
   labels:
     user: "$Username"
     client: "$brand"
     app: "$product"
-    id: "$random"
+    id: "$random-$i"
 spec:
   replicas: 1
   selector:
@@ -14,7 +14,7 @@ spec:
         user: "$Username"
         client: "$brand"
         app: "$product"
-        id: "$random"
+        id: "$random-$i"
   strategy:
     type: Recreate
   template:
@@ -23,7 +23,7 @@ spec:
         user: "$Username"
         client: "$brand"
         app: "$product"
-        id: "$random"
+        id: "$random-$i"
     spec:
       securityContext:
         fsGroup: 1010
@@ -76,7 +76,7 @@ spec:
         - name: PRODUCT_EXT
           value: $product_ext
         volumeMounts:
-        - name: "$Username-$brand-$product-$random"
+        - name: "$Username-$brand-$product-$random-$i"
           mountPath: /home/winer/.wine/
       #- name: "$Username-gitsync"
       #  image: k8s.gcr.io/git-sync:v3.0.1
@@ -118,16 +118,16 @@ spec:
         command: ['sh', '-c', 'mkdir -p /home/winer/.wine/drive_c; chown -R 1000:1010 /home/winer/; echo The app is running!']
         # command: ['sh', '-c', 'while true; do sleep 30; done;']
         volumeMounts:
-        - name: "$Username-$brand-$product-$random"
+        - name: "$Username-$brand-$product-$random-$i"
           mountPath: /home/winer/.wine/
       nodeSelector:
         node.kubernetes.io/instance-type: $instancetype
       imagePullSecrets:
       - name: regcred
       volumes:
-      - name: "$Username-$brand-$product-$random"
+      - name: "$Username-$brand-$product-$random-$i"
         persistentVolumeClaim:
-          claimName: "$Username-$brand-$product-$random"
+          claimName: "$Username-$brand-$product-$random-$i"
       tolerations:
       - key: "client"
         operator: "Equal"
