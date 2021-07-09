@@ -29,11 +29,11 @@ spec:
         fsGroup: 1010
       containers:
       - name: "$Username-$random-solarkennedy"
-        image: launchthatbrand/solarkennedy-wine-x11-novnc-docker:release-1.0.13
+        image: launchthatbrand/solarkennedy-wine-x11-novnc-docker:release-1.0.14
         securityContext:
           runAsUser: 0
       - name: "$Username-$random-nevmerzhitsky"
-        image: launchthatbrand/nevmerzhitsky-headless-metatrader4:elease-1.0.38
+        image: launchthatbrand/nevmerzhitsky-headless-metatrader4:elease-1.0.39
         #command: [ "/bin/bash", "-c", "--" ]
         #args: [ "while true; do sleep 30; done;" ]
         # need poststart to copy files from DockerFile path into pvc path. cant run chmod here as it needs root.
