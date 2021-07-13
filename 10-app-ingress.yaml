@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: tyler-lvrg-type-m-v8-asdfhdsf-1
+  name: default
   namespace: lvrg-customers
   annotations:
     kubernetes.io/ingress.class: nginx
@@ -13,10 +13,10 @@ spec:
     - sc6rffd3d5.netboot.fr
     secretName: guacamole-netboot-fr-tls
   rules:
-  - host: tyler-lvrg-type-m-v8-asdfhdsf-1.lvrgtrading.com
+  - host: default.lvrgtrading.com
     http:
       paths:
       - path: /
         backend:
-          serviceName: tyler-lvrg-type-m-v8-asdfhdsf-1
+          serviceName: default-lvrg-type-m-v8-asdfhdsf-1
           servicePort: 5900
