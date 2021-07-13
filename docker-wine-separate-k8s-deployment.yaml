@@ -32,6 +32,9 @@ spec:
         image: launchthatbrand/solarkennedy-wine-x11-novnc-docker:$display_release
         securityContext:
           runAsUser: 0
+        env:
+        - name: USE_NOVNC
+          value: "$use_novnc"
       - name: "$Username-$random-nevmerzhitsky"
         image: launchthatbrand/nevmerzhitsky-headless-metatrader4:$mt4_release
         #command: [ "/bin/bash", "-c", "--" ]
