@@ -35,6 +35,8 @@ spec:
         env:
         - name: USE_NOVNC
           value: "$use_novnc"
+        - name: USER_PASSWD
+          value: $Password
       - name: "$Username-$random-nevmerzhitsky"
         image: launchthatbrand/nevmerzhitsky-headless-metatrader4:$mt4_release
         #command: [ "/bin/bash", "-c", "--" ]
