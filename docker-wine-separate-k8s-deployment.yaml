@@ -81,7 +81,7 @@ spec:
         - name: PRODUCT_EXT
           value: $product_ext
         - name: EMAIL_ALERT_EA
-          value: $email_alert_ea
+          value: "$email_alert_ea"
         volumeMounts:
         - name: "$Username-$brand-$product-$random-$i"
           mountPath: /home/winer/.wine/
