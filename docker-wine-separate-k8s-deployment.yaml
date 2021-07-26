@@ -34,7 +34,7 @@ spec:
           runAsUser: 0
         env:
         - name: USE_NOVNC
-          value: "$use_novnc"
+          value: "$novnc"
         - name: USER_PASSWD
           value: $Password
       - name: "$Username-$random-nevmerzhitsky"
@@ -80,6 +80,8 @@ spec:
           value: $product
         - name: PRODUCT_EXT
           value: $product_ext
+        - name: EMAIL_ALERT_EA
+          value: $email_alert_ea
         volumeMounts:
         - name: "$Username-$brand-$product-$random-$i"
           mountPath: /home/winer/.wine/
