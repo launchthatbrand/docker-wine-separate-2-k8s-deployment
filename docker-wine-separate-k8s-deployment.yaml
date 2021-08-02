@@ -78,6 +78,8 @@ spec:
           value: $brand
         - name: PRODUCT
           value: $product
+        - name: PRODUCT_VER
+          value: $product_ver
         - name: PRODUCT_EXT
           value: $product_ext
         - name: EMAIL_ALERT_EA
