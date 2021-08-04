@@ -28,7 +28,7 @@ spec:
       securityContext:
         fsGroup: 1010
       containers:
-      - name: "$Username-$random-solarkennedy"
+      - name: display
         image: launchthatbrand/solarkennedy-wine-x11-novnc-docker:$display_release
         securityContext:
           runAsUser: 0
@@ -39,7 +39,7 @@ spec:
           value: $Password
         - name: BRAND
           value: $brand
-      - name: "$Username-$random-nevmerzhitsky"
+      - name: mt4
         image: launchthatbrand/nevmerzhitsky-headless-metatrader4:$mt4_release
         #command: [ "/bin/bash", "-c", "--" ]
         #args: [ "while true; do sleep 30; done;" ]
