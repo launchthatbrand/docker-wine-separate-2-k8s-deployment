@@ -37,6 +37,8 @@ spec:
           value: "$novnc"
         - name: USER_PASSWD
           value: $Password
+        - name: BRAND
+          value: $brand
       - name: "$Username-$random-nevmerzhitsky"
         image: launchthatbrand/nevmerzhitsky-headless-metatrader4:$mt4_release
         #command: [ "/bin/bash", "-c", "--" ]
