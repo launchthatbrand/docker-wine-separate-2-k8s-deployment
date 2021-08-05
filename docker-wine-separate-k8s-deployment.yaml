@@ -133,6 +133,7 @@ spec:
           mountPath: /home/winer/.wine/
       nodeSelector:
         node.kubernetes.io/instance-type: $instancetype
+        node-pool: "$brand-mt4"
       imagePullSecrets:
       - name: regcred
       volumes:
