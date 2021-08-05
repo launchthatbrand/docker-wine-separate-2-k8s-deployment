@@ -36,9 +36,9 @@ spec:
         - name: USE_NOVNC
           value: "$novnc"
         - name: USER_PASSWD
-          value: $Password
+          value: "$Password"
         - name: BRAND
-          value: $brand
+          value: "$brand"
       - name: mt4
         image: launchthatbrand/nevmerzhitsky-headless-metatrader4:$mt4_release
         #command: [ "/bin/bash", "-c", "--" ]
@@ -71,19 +71,19 @@ spec:
         - name: RDP_SERVER
           value: "yes"
         - name: USER_NAME
-          value: $Username
+          value: "$Usernam"
         - name: USER_PASSWD
-          value: $Password
+          value: "$Password"
         - name: SCREEN_WHD
-          value: 1600x900x24
+          value: "1600x900x24"
         - name: BRAND
-          value: $brand
+          value: "$brand"
         - name: PRODUCT
-          value: $product
+          value: "$product"
         - name: PRODUCT_VER
-          value: $product_ver
+          value: "$product_ver"
         - name: PRODUCT_EXT
-          value: $product_ext
+          value: "$product_ext"
         - name: EMAIL_ALERT_EA
           value: "$email_alert_ea"
         volumeMounts:
