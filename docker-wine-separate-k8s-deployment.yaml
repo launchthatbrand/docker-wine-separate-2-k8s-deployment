@@ -32,6 +32,10 @@ spec:
         image: launchthatbrand/solarkennedy-wine-x11-novnc-docker:$display_release
         securityContext:
           runAsUser: 0
+        resources:
+          requests:
+            memory: ".1Gi"
+            cpu: "100m"
         env:
         - name: USE_NOVNC
           value: "$novnc"
