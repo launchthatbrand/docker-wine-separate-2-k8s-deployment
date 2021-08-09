@@ -62,8 +62,8 @@ spec:
         #          winetricks settings fontsmooth=rgb;
         resources:
           requests:
-            memory: "100Mi"
-            cpu: "200m"
+            memory: "${REQ_MEM}Gi"
+            cpu: "${REQ_CPU}m"
           limits:
             memory: "${MEM}Gi"
             cpu: "${CPU}m"
