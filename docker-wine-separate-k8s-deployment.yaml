@@ -34,7 +34,7 @@ spec:
           runAsUser: 0
         resources:
           requests:
-            memory: ".1Gi"
+            memory: "100m"
             cpu: "100m"
         env:
         - name: USE_NOVNC
@@ -66,10 +66,10 @@ spec:
         #          winetricks settings fontsmooth=rgb;
         resources:
           requests:
-            memory: "${REQ_MEM}Gi"
+            memory: "${REQ_MEM}m"
             cpu: "${REQ_CPU}m"
           limits:
-            memory: "${MEM}Gi"
+            memory: "${MEM}m"
             cpu: "${CPU}m"
         env:
         - name: RDP_SERVER
