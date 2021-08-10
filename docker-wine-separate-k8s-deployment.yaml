@@ -35,7 +35,7 @@ spec:
         resources:
           requests:
             memory: "100m"
-            cpu: "100m"
+            cpu: "100Mi"
         env:
         - name: USE_NOVNC
           value: "$novnc"
@@ -67,10 +67,10 @@ spec:
         resources:
           requests:
             memory: "${REQ_MEM}m"
-            cpu: "${REQ_CPU}m"
+            cpu: "${REQ_CPU}Mi"
           limits:
             memory: "${MEM}m"
-            cpu: "${CPU}m"
+            cpu: "${CPU}Mi"
         env:
         - name: RDP_SERVER
           value: "yes"
