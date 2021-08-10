@@ -66,11 +66,11 @@ spec:
         #          winetricks settings fontsmooth=rgb;
         resources:
           requests:
-            memory: "${REQ_MEM}m"
-            cpu: "${REQ_CPU}Mi"
+            memory: "${REQ_MEM}Mi"
+            cpu: "${REQ_CPU}m"
           limits:
-            memory: "${MEM}m"
-            cpu: "${CPU}Mi"
+            memory: "${MEM}Mi"
+            cpu: "${CPU}m"
         env:
         - name: RDP_SERVER
           value: "yes"
